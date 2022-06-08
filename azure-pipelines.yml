@@ -9,6 +9,7 @@ trigger:
 
 pool:
   name: VM-AWS
+steps:
 
 - task: FortifyScanCentralSAST@7
   inputs:
@@ -23,7 +24,6 @@ pool:
     block: true
     outputFile: 'eightball.fpr'
     logFile: 'eightball.log'
-     
      
 - task: PowerShell@2
 
