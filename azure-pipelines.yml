@@ -11,6 +11,19 @@ pool:
   name: VM-AWS
 steps:
 
+- task: FortifyScanCentralSAST@7
+  inputs:
+    scanCentralCtrlUrl: '$(ScanCentralURL)'
+    scanCentralClientToken: '$(ScanCentral.ClientToken)'
+    sscUrl: '$(SSC_URL)'
+    sscCiToken: '$(ScanCentral.SscCiToken)'
+    uploadToSSC: true
+    applicationName: '$(SSC_PROJECTNAME)'
+    applicationVersion: '$(SSC_PROJECTVERSION)'
+    buildTool: 'none'
+    block: true
+    outputFile: 'eightball.fpr'
+    logFile: 'eightball.log'
      
 - task: CmdLine@2
 
