@@ -11,10 +11,6 @@ pool:
   name: VM-AWS
 
 - task: FortifyScanCentralSAST@7
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: 'java -jar C:\fortifytask\fortifytask.jar --sscApplicationUrl=%SSC_URL% --sscAuthToken=%SSC_AUTHTOKEN% --projectName=%SSC_PROJECTNAME% --projectVersionName=%SSC_PROJECTVERSION% --newProject=false--maxSeverityCountLow=0 --maxSeverityCountMedium=0 --maxSeverityCountHigh=0 --maxSeverityCountCritical=0'
   inputs:
     scanCentralCtrlUrl: '$(ScanCentralURL)'
     scanCentralClientToken: '$(ScanCentral.ClientToken)'
@@ -27,3 +23,7 @@ pool:
     block: true
     outputFile: 'eightball.fpr'
     logFile: 'eightball.log'
+     task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'java -jar C:\fortifytask\fortifytask.jar --sscApplicationUrl=%SSC_URL% --sscAuthToken=%SSC_AUTHTOKEN% --projectName=%SSC_PROJECTNAME% --projectVersionName=%SSC_PROJECTVERSION% --newProject=false--maxSeverityCountLow=0 --maxSeverityCountMedium=0 --maxSeverityCountHigh=0 --maxSeverityCountCritical=0'
