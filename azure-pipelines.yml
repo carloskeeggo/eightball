@@ -14,6 +14,6 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $var = scancentral -sscurl https://34.226.50.182:8443/ssc  -ssctoken 083332a2-ebf2-4453-926d-abbc0b6baf6b  start -bt none  -upload -application "eightball" -version "eightball" -uptoken 083332a2-ebf2-4453-926d-abbc0b6baf6b
+      $var = scancentral -sscurl https://34.226.50.182:8443/ssc  -ssctoken 083332a2-ebf2-4453-926d-abbc0b6baf6b  start -bt none  -upload -application "eightball" -version "eightball-azure" -uptoken 083332a2-ebf2-4453-926d-abbc0b6baf6b
       echo $var
           
