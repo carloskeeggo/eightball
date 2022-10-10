@@ -12,7 +12,7 @@ pool:
 steps:
 
 - powershell: |
-     Write-Host "##vso[task.setvariable variable=myJobVar]this is the same job"
+     Write-Host "##vso[task.setvariable variable=myJobVar]scancentral -sscurl https://34.226.50.182:8443/ssc  -ssctoken 083332a2-ebf2-4453-926d-abbc0b6baf6b  start -bt none  -upload -application "eightball" -version "eightball-azure" -uptoken 083332a2-ebf2-4453-926d-abbc0b6baf6bb"
 - powershell: |
      Write-Host "##vso[task.setvariable variable=myOutputJobVar;isoutput=true]this is the same job too"
   name: setOutput
