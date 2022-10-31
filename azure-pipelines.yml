@@ -10,8 +10,18 @@ trigger:
 pool:
   name: VM-BSB
 steps:
-
-- powershell: |
-     Write-Host "##vso[task.setvariable variable=myJobVar]scancentral -sscurl https://34.226.50.182:8443/ssc  -ssctoken 083332a2-ebf2-4453-926d-abbc0b6baf6b  start -bt none  -upload -application "eightball" -version "eightball-azure" -uptoken 083332a2-ebf2-4453-926d-abbc0b6baf6bb"
-- powershell: |
-     Write-Host $(myJobVar) 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      java -jar "C:\fortifytask\fortify-api-client-latest.jar" waitArtifactProcess -n "eightball" -version "eightball-azure";
+      $reportfortify = java -jar "C:\fortifytask\fortify-api-client-latest.jar" legacyReport -n "eightball" -version "eightball-azure";
+      
+      echo $reportfortify;
+      
+      if ($reportfortify -like ("*- 0 Criticas (Novas)*")){
+          Write-Output  "Análise Fortify SAST concluída com sucesso, nenhum problema crítico encontrado."                              
+      }
+      else{
+          Write-Error -Message "Error na  build devido a problemas críticos na análise Fortify SAST." -ErrorAction Stop
+      }
