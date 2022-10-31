@@ -19,7 +19,7 @@ steps:
       
       echo $reportfortify;
       
-      if ($reportfortify -like ("*- 0 Criticas (Novas)*")){
+      if ($reportfortify -like ("*- 0 Altas (Novas)*")){
           Write-Output  "Análise Fortify SAST concluída com sucesso, nenhum problema crítico encontrado."                              
       }
       else{
